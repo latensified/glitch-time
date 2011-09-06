@@ -17,18 +17,18 @@ class GlitchTime
   SECONDS_IN_GAME_DAY = 14400
   SECONDS_IN_GAME_HOUR = 600
   SECONDS_IN_GAME_MINUTE = 10
-  MONTHS = {'Primuary' => 29,
-            'Spork' => 3,
-            'Bruise' => 53,
-            'Candy' => 17,
-            'Fever' => 73,
-            'Junuary' => 19,
-            'Septa' => 13,
-            'Remember' => 37,
-            'Doom' => 5,
-            'Widdershins' => 47,
-            'Eleventy' => 11,
-            'Recurse' => -1}
+  MONTHS = ['Primuary',
+            'Spork',
+            'Bruise',
+            'Candy',
+            'Fever',
+            'Junuary',
+            'Septa',
+            'Remember',
+            'Doom',
+            'Widdershins',
+            'Eleventy',
+            'Recurse']
 
   DAYS = ['Hairday', 'Moonday', 'Twoday', 'Weddingday', 'Theday', 'Fryday', 'Standay', 'Fabday']
 
@@ -61,7 +61,7 @@ class GlitchTime
   end
 
   def standard_hour
-    current_hour = hour
+    current_hour = hour == 0 ? HOURS_IN_HALF_DAY : hour
     current_hour > HOURS_IN_HALF_DAY ? current_hour -= HOURS_IN_HALF_DAY : current_hour
   end
 
@@ -100,18 +100,20 @@ class GlitchTime
   end
 
   def day_to_month_day incremental_day
+    month_lengths = [29, 3, 53, 17, 73, 19, 13, 37, 5, 47, 11, 1]
     current_day = 0
-    m = 0
-
-    MONTHS.each do |month|
-      current_day += month[1]
+    i=0
+    month_lengths.each do |month|
+      i += 1
+      current_day += month
       if (current_day > incremental_day)
-        m += 1
-        d = incremental_day + 1 - (current_day - month[1])
-        return [m, d]
+        m = i + 1
+        d = incremental_day + 1 - (current_day - month)
+        return [m-1, d]
       end
     end
-    array(0, 0)
+
+    [0, 0]
   end
 
   def day_name
@@ -119,7 +121,7 @@ class GlitchTime
   end
 
   def month_name
-    MONTHS.to_a[day_to_month_day(day_of_year)[0]][0]
+    MONTHS[day_to_month_day(day_of_year)[1]]
   end
 
   def suffix value = day_of_month

@@ -25,37 +25,24 @@ class GlitchTimeTest < Test::Unit::TestCase
 
   def test_glitch_time
     glitch_time = GlitchTime.new
-
     sec = glitch_time.real_now - 1238562000
-
-    # there are 4435200 real seconds in a game year
-    # there are 14400 real seconds in a game day
-    # there are 600 real seconds in a game hour
-    # there are 10 real seconds in a game minute
-
     year = (sec / 4435200).floor
-
     assert_equal(year, glitch_time.year, "Year is incorrect.")
 
     sec -= year * 4435200
     day_of_year = (sec / 14400).floor
-
     assert_equal(day_of_year, glitch_time.day_of_year, "Day of year is incorrect.")
 
     sec -= day_of_year * 14400
     hour = (sec / 600).floor
-
     assert_equal(hour, glitch_time.hour, "Hour is incorrect.")
 
     sec -= hour * 600
     minute = (sec / 10).floor
-
     assert_equal(minute, glitch_time.minute, "Minute is incorrect.")
 
     sec -= minute * 10
-
     assert_equal(sec, glitch_time.second, "Seconds are incorrect.")
-
   end
 
   def test_days_since_epoch
@@ -68,18 +55,19 @@ class GlitchTimeTest < Test::Unit::TestCase
   def test_day_to_month_day
     glitch_time = GlitchTime.new
 
-
     puts "Today is #{glitch_time.month_of_year}/#{glitch_time.day_of_month}!"
 
     third_of_primuary = [1, 3]
     actual = glitch_time.day_to_month_day(2)
-
-    assert_equal(third_of_primuary, actual)
+    assert_equal(third_of_primuary, actual, "Third of primuary is wrong.")
 
     first_of_spork = [2, 1]
     actual = glitch_time.day_to_month_day(29)
+    assert_equal(first_of_spork, actual, "First of spork is wrong.")
 
-    fifty_third_of_bruise = glitch_time.day_to_month_day(84)
+    fifty_third_of_bruise = [3, 53]
+    actual = glitch_time.day_to_month_day(84)
+    assert_equal(fifty_third_of_bruise, actual, "Fifty-third of bruise is wrong.")
   end
 
   def test_suffix
