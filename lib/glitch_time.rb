@@ -1,7 +1,10 @@
 #
 # Converts real time to Glitch Time
+# In the world of Glitch a game day is four real hours long.
 #
 # There are 308 days in a glitch year.
+# There are 24 hours in a day.
+# There are 60 minutes in an hour.
 # There are 4435200 real seconds in a game year.
 # There are 14400 real seconds in a game day.
 # There are 600 real seconds in a game hour.
@@ -138,7 +141,11 @@ class GlitchTime
     end
   end
 
+  def time_and_date
+    "#{standard_hour}:#{pretty_minute} #{meridian_indicator}, #{day_name} #{day_of_month}#{suffix} of #{month_name}, year #{year}"
+  end
+
   def verbose_time_and_date
-    "Right at this very moment, it's #{standard_hour}:#{pretty_minute} #{meridian_indicator}, #{day_name} #{day_of_month}#{suffix} of #{month_name}, year #{year}"
+    "Right at this very moment, it's #{time_and_date}"
   end
 end
