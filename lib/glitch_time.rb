@@ -34,8 +34,9 @@ class GlitchTime
 
   attr_reader :real_now
 
-  def initialize
-    @real_now = Time.now.to_i
+  def initialize(time = nil)
+    time ||= Time.now.to_i
+    @real_now = time
     @year_offset = (year * SECONDS_IN_GAME_YEAR)
     @day_of_year_offset = (day_of_year * SECONDS_IN_GAME_DAY)
     @hour_offset = (hour * SECONDS_IN_GAME_HOUR)
@@ -138,6 +139,6 @@ class GlitchTime
   end
 
   def verbose_time_and_date
-    puts "Right at this very moment, it's #{standard_hour}:#{pretty_minute} #{meridian_indicator}, #{day_name} #{day_of_month}#{suffix} of #{month_name}, year #{year}"
+    "Right at this very moment, it's #{standard_hour}:#{pretty_minute} #{meridian_indicator}, #{day_name} #{day_of_month}#{suffix} of #{month_name}, year #{year}"
   end
 end

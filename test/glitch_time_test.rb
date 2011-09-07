@@ -19,8 +19,58 @@ class GlitchTimeTest < Test::Unit::TestCase
   def test_year
     expected = (@now - 1238562000) / 4435200
     actual = GlitchTime.new.year
-
     assert_equal(expected, actual, "Current year is incorrect.")
+
+    actual = GlitchTime.new(1315381646).year
+    assert_equal(expected, actual, "Current year is incorrect.")
+  end
+
+  def test_day_of_year
+    glitch_time = GlitchTime.new 1315381646
+    expected = 98
+    actual = glitch_time.day_of_year
+
+    assert_equal(expected, actual)
+  end
+
+  def test_hour
+    glitch_time = GlitchTime.new 1315381646
+    expected = 16
+    actual = glitch_time.hour
+
+    assert_equal(expected, actual)
+  end
+
+  def test_meridian_indicator
+    glitch_time = GlitchTime.new 1315381646
+    expected = 'pm'
+    actual = glitch_time.meridian_indicator
+
+    assert_equal(expected, actual)
+  end
+
+  def test_minute
+    glitch_time = GlitchTime.new 1315381646
+    expected = 44
+    actual = glitch_time.minute
+
+    assert_equal(expected, actual)
+  end
+
+  def test_pretty_minute
+    glitch_time = GlitchTime.new 1315381846
+    expected = '04'
+    actual = glitch_time.pretty_minute
+
+    assert_equal(expected, actual)
+  end
+
+  def test_second
+    glitch_time = GlitchTime.new 1315381646
+    expected = 6
+    actual = glitch_time.second
+
+    assert_equal(expected, actual)
   end
 
   def test_glitch_time
@@ -119,10 +169,13 @@ class GlitchTimeTest < Test::Unit::TestCase
   end
 
   def test_pretty_printing
-    glitch_time = GlitchTime.new
+    glitch_time = GlitchTime.new 1315381646
     actual = glitch_time.verbose_time_and_date
-    expected = "Right at this very moment, it's #{glitch_time.standard_hour}:#{glitch_time.pretty_minute} #{glitch_time.meridian_indicator}, #{glitch_time.day_name} #{glitch_time.day_of_month}#{glitch_time.suffix} of #{glitch_time.month_name}, year #{glitch_time.year}"
-
+    expected = "Right at this very moment, it's 4:44 pm, Fryday 14th of Candy, year 17"
     puts actual
+
+    assert_equal(expected, actual)
   end
+
+
 end
