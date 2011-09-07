@@ -45,12 +45,12 @@ class GlitchTimeTest < Test::Unit::TestCase
     assert_equal(sec, glitch_time.second, "Seconds are incorrect.")
   end
 
-  def test_days_since_epoch
-    glitch_time = GlitchTime.new
-    expected = glitch_time.now / 14400
-
-    assert_equal(expected, glitch_time.days_since_epoch, "Days since epoch is incorrect.")
-  end
+#  def test_days_since_epoch
+#    glitch_time = GlitchTime.new
+#    expected = glitch_time.now / 14400
+#
+#    assert_equal(expected, glitch_time.days_since_epoch, "Days since epoch is incorrect.")
+#  end
 
   def test_day_to_month_day
     glitch_time = GlitchTime.new
@@ -120,8 +120,9 @@ class GlitchTimeTest < Test::Unit::TestCase
 
   def test_pretty_printing
     glitch_time = GlitchTime.new
+    actual = glitch_time.verbose_time_and_date
+    expected = "Right at this very moment, it's #{glitch_time.standard_hour}:#{glitch_time.pretty_minute} #{glitch_time.meridian_indicator}, #{glitch_time.day_name} #{glitch_time.day_of_month}#{glitch_time.suffix} of #{glitch_time.month_name}, year #{glitch_time.year}"
 
-    puts "Right at this very moment, it's #{glitch_time.standard_hour}:#{glitch_time.pretty_minute} #{glitch_time.meridian_indicator}, #{glitch_time.day_name} #{glitch_time.day_of_month}#{glitch_time.suffix} of #{glitch_time.month_name}, year #{glitch_time.year}"
-
+    puts actual
   end
 end

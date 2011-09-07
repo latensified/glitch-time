@@ -11,7 +11,7 @@
 
 class GlitchTime
   GAME_EPOCH = 1238562000
-  DAYS_IN_YEAR = 308
+  DAYS_IN_YEAR = 307
   HOURS_IN_HALF_DAY = 12
   SECONDS_IN_GAME_YEAR = 4435200
   SECONDS_IN_GAME_DAY = 14400
@@ -96,23 +96,21 @@ class GlitchTime
   end
 
   def month_of_year
-    day_to_month_day(day_of_year)[0]
+    day_to_month_day(day_of_year)[0] - 1
   end
 
+  # Converts an absolute day to month, day pair
   def day_to_month_day incremental_day
     month_lengths = [29, 3, 53, 17, 73, 19, 13, 37, 5, 47, 11, 1]
     current_day = 0
-    i=0
-    month_lengths.each do |month|
-      i += 1
+    month_lengths.each_with_index do |month, index|
       current_day += month
       if (current_day > incremental_day)
-        m = i + 1
+        m = index + 1
         d = incremental_day + 1 - (current_day - month)
-        return [m-1, d]
+        return [m, d]
       end
     end
-
     [0, 0]
   end
 
@@ -121,7 +119,7 @@ class GlitchTime
   end
 
   def month_name
-    MONTHS[day_to_month_day(day_of_year)[1]]
+    MONTHS[month_of_year]
   end
 
   def suffix value = day_of_month
@@ -137,5 +135,9 @@ class GlitchTime
       else
         'th'
     end
+  end
+
+  def verbose_time_and_date
+    puts "Right at this very moment, it's #{standard_hour}:#{pretty_minute} #{meridian_indicator}, #{day_name} #{day_of_month}#{suffix} of #{month_name}, year #{year}"
   end
 end
