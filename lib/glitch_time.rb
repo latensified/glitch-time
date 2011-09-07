@@ -34,9 +34,9 @@ class GlitchTime
 
   attr_reader :real_now
 
-  def initialize(time = nil)
-    time ||= Time.now.to_i
-    @real_now = time
+  def initialize(seconds_since_epoch = nil)
+    seconds_since_epoch ||= Time.now.to_i
+    @real_now = seconds_since_epoch
     @year_offset = (year * SECONDS_IN_GAME_YEAR)
     @day_of_year_offset = (day_of_year * SECONDS_IN_GAME_DAY)
     @hour_offset = (hour * SECONDS_IN_GAME_HOUR)

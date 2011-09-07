@@ -176,6 +176,4 @@ class GlitchTimeTest < Test::Unit::TestCase
 
     assert_equal(expected, actual)
   end
-
-
 end
