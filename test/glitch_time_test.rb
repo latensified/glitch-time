@@ -1,5 +1,5 @@
 require "test/unit"
-require "../lib/glitch_time"
+require File.join('.', File.dirname(__FILE__), '..', 'lib', 'glitch_time')
 
 class GlitchTimeTest < Test::Unit::TestCase
 
@@ -175,5 +175,24 @@ class GlitchTimeTest < Test::Unit::TestCase
     puts actual
 
     assert_equal(expected, actual)
+  end
+
+  def test_time_and_date_for_recurse
+    glitch_time = GlitchTime.new 1313946861
+    actual = glitch_time.time_and_date
+    expected = "1:26 am, Recurse, year 16"
+    puts actual
+
+    assert_equal(expected, actual)
+  end
+
+  def test_day_name_for_recurse
+    glitch_time = GlitchTime.new 1313946861
+    assert_equal(nil, glitch_time.day_name)
+  end
+
+  def test_day_of_week_for_recurse
+    glitch_time = GlitchTime.new 1313946861
+    assert_equal(nil, glitch_time.day_of_week)
   end
 end

@@ -92,6 +92,7 @@ class GlitchTime
   end
 
   def day_of_week
+    return nil if month_of_year == 11
     days_since_epoch.modulo 8;
   end
 
@@ -119,6 +120,7 @@ class GlitchTime
   end
 
   def day_name
+    return nil if month_of_year == 11
     DAYS[day_of_week]
   end
 
@@ -142,7 +144,11 @@ class GlitchTime
   end
 
   def time_and_date
-    "#{standard_hour}:#{pretty_minute} #{meridian_indicator}, #{day_name} #{day_of_month}#{suffix} of #{month_name}, year #{year}"
+    if month_of_year == 11
+      "#{standard_hour}:#{pretty_minute} #{meridian_indicator}, #{month_name}, year #{year}"
+    else
+      "#{standard_hour}:#{pretty_minute} #{meridian_indicator}, #{day_name} #{day_of_month}#{suffix} of #{month_name}, year #{year}"
+    end
   end
 
   def verbose_time_and_date
