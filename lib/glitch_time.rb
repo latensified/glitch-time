@@ -88,7 +88,7 @@ class GlitchTime
   end
 
   def weekdays_since_epoch
-    # The day of Recurse is not a weekday, so we subtract one.
+    # This does not include the annual day of recurse, since it is not a weekday.
     day_of_year + ((DAYS_IN_YEAR - 1) * year)
   end
 

@@ -1,4 +1,4 @@
-GEM
+raGEM
   remote: http://rubygems.org/
   specs:
     git (1.2.5)
