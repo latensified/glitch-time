@@ -4,7 +4,7 @@ require "glitch-time/version"
 
 Gem::Specification.new do |s|
   s.name        = "glitch-time"
-  s.version     = Glitch::Time::VERSION
+  s.version     = "0.0.3"
   s.authors     = ["Simon Peck"]
   s.email       =   ""
   s.homepage    = ""
