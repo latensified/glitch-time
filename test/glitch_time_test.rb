@@ -1,5 +1,5 @@
 require "test/unit"
-require File.join('.', File.dirname(__FILE__), '..', 'lib', 'glitch_time')
+require File.join('', File.dirname(__FILE__), '..', 'lib', 'glitch_time')
 
 class GlitchTimeTest < Test::Unit::TestCase
 
@@ -95,12 +95,16 @@ class GlitchTimeTest < Test::Unit::TestCase
     assert_equal(sec, glitch_time.second, "Seconds are incorrect.")
   end
 
-#  def test_days_since_epoch
-#    glitch_time = GlitchTime.new
-#    expected = glitch_time.now / 14400
-#
-#    assert_equal(expected, glitch_time.days_since_epoch, "Days since epoch is incorrect.")
-#  end
+
+  def test_weekdays_since_epoch
+    glitch_time = GlitchTime.new
+    years_since_epoch = glitch_time.now / 4435200
+
+    # The day of Recurse does not count as a weekday.
+    expected = (glitch_time.now / 14400) - years_since_epoch
+
+    assert_equal(expected, glitch_time.weekdays_since_epoch, "Days since epoch is incorrect.")
+  end
 
   def test_day_to_month_day
     glitch_time = GlitchTime.new

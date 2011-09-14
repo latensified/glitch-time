@@ -14,7 +14,7 @@
 
 class GlitchTime
   GAME_EPOCH = 1238562000
-  DAYS_IN_YEAR = 307
+  DAYS_IN_YEAR = 308
   HOURS_IN_HALF_DAY = 12
   SECONDS_IN_GAME_YEAR = 4435200
   SECONDS_IN_GAME_DAY = 14400
@@ -87,13 +87,14 @@ class GlitchTime
     now - @year_offset - @day_of_year_offset - @hour_offset - @minute_offset
   end
 
-  def days_since_epoch
-    day_of_year + (DAYS_IN_YEAR * year)
+  def weekdays_since_epoch
+    # The day of Recurse is not a weekday, so we subtract one.
+    day_of_year + ((DAYS_IN_YEAR - 1) * year)
   end
 
   def day_of_week
     return nil if month_of_year == 11
-    days_since_epoch.modulo 8;
+    weekdays_since_epoch.modulo 8;
   end
 
   def day_of_month
