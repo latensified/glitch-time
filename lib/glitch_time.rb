@@ -11,6 +11,7 @@
 # There are 10 real seconds in a game minute.
 #
 # The Glitch epoch began at 1238562000 Unix time.
+require File.join(' ', File.dirname(__FILE__), 'glitch_time')
 
 class GlitchTime
   GAME_EPOCH = 1238562000
