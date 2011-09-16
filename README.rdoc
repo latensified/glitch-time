@@ -1,4 +1,5 @@
 = glitch-time
+
 ==== <tt>gem install glitch-time</tt>
 
 This is a port of the Glitch time converter documented here: http://api.glitch.com/docs/time/
@@ -6,13 +7,13 @@ This is a port of the Glitch time converter documented here: http://api.glitch.c
 === Converts real time to Glitch Time
 In the world of Glitch a game day is four real hours long.
 
-There are 308 days in a glitch year.
-There are 24 hours in a day.
-There are 60 minutes in an hour.
-There are 4435200 real seconds in a game year.
-There are 14400 real seconds in a game day.
-There are 600 real seconds in a game hour.
-There are 10 real seconds in a game minute.
+* There are 308 days in a glitch year.
+* There are 24 hours in a day.
+* There are 60 minutes in an hour.
+* There are 4435200 real seconds in a game year.
+* There are 14400 real seconds in a game day.
+* There are 600 real seconds in a game hour.
+* There are 10 real seconds in a game minute.
 
 The 308th day of the year, called Recurse, does not count as a weekday.
 
