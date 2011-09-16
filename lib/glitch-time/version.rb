@@ -1,5 +1,5 @@
 module Glitch
   module Time
-    VERSION = "0.0.1"
+    VERSION = "0.0.4"
   end
 end
