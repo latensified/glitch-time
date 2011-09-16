@@ -1,6 +1,9 @@
 = glitch-time
 
+== Rubygems
 ==== <tt>gem install glitch-time</tt>
+https://rubygems.org/gems/glitch-time
+
 
 This is a port of the Glitch time converter documented here: http://api.glitch.com/docs/time/
 
